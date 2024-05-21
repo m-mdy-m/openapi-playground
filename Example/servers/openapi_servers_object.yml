@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI spec version 3.0
+  version: 0.0.1
+paths: {}
+servers:
+  - url: https://{host}.api.com/v1/{username}
+    description: demo
+    variables:
+        username:
+            default: "mahdi"
+            enum:
+              - "m__mdy__m"
+        host:
+          default: api  
+          description: The API hostname
+          enum:  
+            - api
+            - staging
