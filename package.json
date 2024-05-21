@@ -1,0 +1,22 @@
+{
+  "name": "openapi-playground",
+  "version": "1.0.0",
+  "description": "Explore OpenAPI & Swagger with Node.js! Learn code-first & design-first workflows, routes, documentation, reusability, data types, & more. Experiment with security, hosting, and code generation.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-mdy-m/openapi-playground.git"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "openapi"
+  ],
+  "bugs": {
+    "url": "https://github.com/m-mdy-m/openapi-playground/issues"
+  },
+  "homepage": "https://github.com/m-mdy-m/openapi-playground#readme",
+  "author": "Mahdi",
+  "license": "MIT"
+}
