@@ -24,4 +24,4 @@ The `info` object within your OpenAPI Specification acts as the central hub for 
 
 ![](./Info%20explanation%20openapi.PNG)
 
-- [Example](../Example/openapi_info_object.yml)
+- [Example](../../Example/openapi_info_object.yml)
