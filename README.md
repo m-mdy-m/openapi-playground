@@ -51,13 +51,11 @@ I'm on a self-paced learning journey, and this repository reflects my progress. 
 
 **Project Structure:**
 
-- **README.md:** This file (you're reading it now!).
-- **openapi.yaml/openapi.json:** The OpenAPI Specification (OAS) document defining the API.
-- **server.js:** The Node.js server file handling routing, middleware, and responses.
-- **components:** If applicable, this directory will hold reusable components defined in OAS.
-- **docs:** This directory might contain additional documentation or configuration for the Swagger UI.
-- **tests:** For future implementation of unit and integration tests to ensure API functionality and robustness.
-
+- **README.md:** Welcome file providing project overview and usage instructions.
+- **components:** In-depth explanations of reusable elements within OpenAPI Specifications.
+- **docs:** Detailed breakdowns of core OpenAPI concepts like info, paths, and servers, including examples. 
+- **Example** Practical demonstrations of OpenAPI components like tags, components, paths, and more, in action.
+- **Inheritance:**Explanation of inheritance and polymorphism in openapi
 **Code Generation and API Hosting:**
 
 While this repository focuses on learning, in the future, I might explore:
