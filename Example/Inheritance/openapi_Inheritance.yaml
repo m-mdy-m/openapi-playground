@@ -145,6 +145,31 @@ paths:
       responses: 
         "204":
           description: Order Delete
+  /oneOfOrder:
+    post:
+      tags: 
+        - Order
+      summary: Insert OneOf the Order
+      description: Insert OneOf the Order Details
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                products:
+                  type: object
+                  oneOf: 
+                    - $ref: "#/components/schemas/Mobile"
+                    - $ref: "#/components/schemas/Laptop"
+                address:
+                  $ref: "#/components/schemas/Address"
+              required:
+                - products
+                - address
+      responses: 
+        "200":
+          description: Order placed 
 components: 
   parameters: 
     orderIdQuery:
