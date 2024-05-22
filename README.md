@@ -13,9 +13,6 @@ I'm on a self-paced learning journey, and this repository reflects my progress. 
 2. **Code-First Scenario:**
    - Setting up a basic Node.js server using Express.
    - Defining routes and handling requests/responses.
-   - Gradually integrating OAS:
-     - Using `swagger-jsdoc` to generate an OAS document from the code.
-     - Integrating `swagger-ui-express` to create an interactive API documentation interface.
 
 3. **Design-First Scenario:**
    - Creating a comprehensive OAS document outlining the API upfront.
@@ -29,7 +26,6 @@ I'm on a self-paced learning journey, and this repository reflects my progress. 
 5. **Crafting Excellent API Documentation:**
    - Using OAS to provide clear descriptions of routes, parameters, request/response bodies, and error handling.
    - Including example payloads for enhanced clarity.
-   - Utilizing `swagger-ui-express` or a similar tool to generate user-friendly API documentation.
 
 6. **Component Reusability:**
    - Identifying recurring components (responses, request bodies, parameters, or headers) and defining them in the OAS `components` section for reusability and maintainability.
