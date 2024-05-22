@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: My E-commerce Store API
+  version: 0.0.1
+  description: A simple Api
+  contact:
+    name: APi support
+    email: mahdimamashli1383@gmail.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://{host}.api.com/{vesrion}/{username}
+    description: demo
+    variables:
+        username:
+            default: "mahdi"
+            enum:
+              - "m__mdy__m"
+        host:
+          default: api  
+          description: The API hostname
+          enum:  
+            - api
+            - staging
+        version:
+          default: v1
+paths: {
+  
+}
