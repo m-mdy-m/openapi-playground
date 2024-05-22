@@ -13,18 +13,34 @@ servers:
   - url: https://{host}.api.com/{vesrion}/{username}
     description: demo
     variables:
-        username:
-            default: "mahdi"
-            enum:
-              - "m__mdy__m"
-        host:
-          default: api  
-          description: The API hostname
-          enum:  
-            - api
-            - staging
-        version:
-          default: v1
-paths: {
-  
-}
+      username:
+        default: "mahdi"
+        enum:
+          - "m__mdy__m"
+      host:
+        default: api
+        description: The API hostname
+        enum:
+          - api
+          - staging
+      version:
+        default: v1
+paths:
+  /products:
+    get:
+      summary: List All product
+      description: Return the List Product
+      responses:
+        "200":
+          description: OK
+          content : 
+            application/json: 
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    productId: 
+                      type: integer
+                    name:
+                      type: string
