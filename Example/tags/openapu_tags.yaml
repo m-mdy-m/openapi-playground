@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: My E-commerce Store API
+  version: 0.0.1
+  description: |
+        ## About us
+        **E-commerce** is eaxmple demo with markdown syntax.
+        - example 1
+        > example 2
+        - > example 3 and `example 4`
+  contact:
+    name: API Support
+    email: mahdimamashli1383@gmail.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://{host}.api.com/{vesrion}/{username}
+    description: demo
+    variables:
+        username:
+            default: mahdi19
+            enum:
+              - "m__mdy__m"
+        host:
+          default: api  
+          description: The API hostname
+          enum:  
+            - api
+            - staging
+        version:
+          default: v1
+paths:
+  /products:
+    get:
+      summary: List All product
+      description: Return the List Product
+      parameters: 
+        - name : productId
+          in: query
+          schema: 
+            type: integer
+            minimum: 100
+            maximum: 1000
+          examples:
+            mobile: 
+              summary: this example mobile 
+              value: 102
+            pc:
+              summary: this example pc
+              value: 103
+      responses:
+        "200":
+          description: OK
+          content : 
+            application/json: 
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    productId: 
+                      type: integer
+                    name:
+                      type: string
+              examples:
+                all-product-data:
+                  summary: Product Data example
+                  value : 
+                    - product: 101
+                      name: mobile
+                    - product: 102
+                      name: laptop
+                single-product:
+                  summary: Single product Example Data
+                  value:
+                    - product : 102
+                      name: pc
+  /orders: 
+    post:
+      summary: Create orders
+      description: Post Order Defails to Shop
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                products:
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      productId: 
+                        type: integer
+                      name:
+                        type: string
+                      price:
+                        type : number
+                      categoryName : 
+                        type : string
+                      quantity:
+                        type: integer
+                address:
+                  type: object
+                  properties:
+                    addressLine:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    zipcode:
+                      type: string
+      responses: 
+        "201":
+          description: Order Created
+          content:
+            application/json: 
+              schema: 
+                type: object
+                properties:
+                  orderId:
+                    type : integer
+                
+    put:
+      summary: Update orders
+      description: Update Order Defails to Shop
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                orderId:
+                  type: integer
+                products:
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      productId: 
+                        type: integer
+                      name:
+                        type: string
+                      price:
+                        type : number
+                      categoryName : 
+                        type : string
+                      quantity:
+                        type: integer
+                address:
+                  type: object
+                  properties:
+                    addressLine:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    zipcode:
+                      type: string
+      responses: 
+        "200":
+          description: Order Update
+    delete:
+      summary: Delete orders
+      description: Delete Order 
+      parameters: 
+        - name: orderId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses: 
+        "204":
+          description: Order Delete
