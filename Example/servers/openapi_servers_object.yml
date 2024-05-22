@@ -4,7 +4,7 @@ info:
   version: 0.0.1
 paths: {}
 servers:
-  - url: https://{host}.api.com/v1/{username}
+  - url: https://{host}.api.com/{vesrion}/{username}
     description: demo
     variables:
         username:
@@ -17,3 +17,5 @@ servers:
           enum:  
             - api
             - staging
+        version:
+          default: v1
