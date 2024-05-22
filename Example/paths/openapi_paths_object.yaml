@@ -52,3 +52,51 @@ paths:
                       type: integer
                     name:
                       type: string
+  /orders: 
+    post:
+      summary: Create orders
+      description: Post Order Defails to Shop
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                products:
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      productId: 
+                        type: integer
+                      name:
+                        type: string
+                      price:
+                        type : number
+                      categoryName : 
+                        type : string
+                      quantity:
+                        type: integer
+                address:
+                  type: object
+                  properties:
+                    addressLine:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    zipcode:
+                      type: string
+
+      responses: 
+        "201":
+          description: Order Created
+          content:
+            application/json: 
+              schema: 
+                type: object
+                properties:
+                  orderId:
+                    type : integer
+                
