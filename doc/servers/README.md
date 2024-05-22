@@ -37,3 +37,6 @@ servers:
           - api
           - staging
 ```
+
+
+![](./openapi_servers.PNG)
