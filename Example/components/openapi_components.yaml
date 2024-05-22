@@ -19,7 +19,7 @@ servers:
     description: demo
     variables:
         username:
-            default: mahdi19
+            default: "mahdi19"
             enum:
               - "m__mdy__m"
         host:
@@ -99,29 +99,9 @@ paths:
                 products:
                   type: array
                   items: 
-                    type: object
-                    properties: 
-                      productId: 
-                        type: integer
-                      name:
-                        type: string
-                      price:
-                        type : number
-                      categoryName : 
-                        type : string
-                      quantity:
-                        type: integer
+                    $ref: "#/components/schemas/Product"
                 address:
-                  type: object
-                  properties:
-                    addressLine:
-                      type: string
-                    city:
-                      type: string
-                    state:
-                      type: string
-                    zipcode:
-                      type: string
+                  $ref: "#/components/schemas/Address"
       responses: 
         "201":
           description: Order Created
@@ -149,29 +129,9 @@ paths:
                 products:
                   type: array
                   items: 
-                    type: object
-                    properties: 
-                      productId: 
-                        type: integer
-                      name:
-                        type: string
-                      price:
-                        type : number
-                      categoryName : 
-                        type : string
-                      quantity:
-                        type: integer
+                    $ref: "#/components/schemas/Product"
                 address:
-                  type: object
-                  properties:
-                    addressLine:
-                      type: string
-                    city:
-                      type: string
-                    state:
-                      type: string
-                    zipcode:
-                      type: string
+                  $ref: "#/components/schemas/Address"
       responses: 
         "200":
           description: Order Update
@@ -193,3 +153,29 @@ components:
       required: true
       schema:
         type: integer
+  schemas: 
+    Address:
+      type: object
+      properties:
+        addressLine:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+      required: [addressLine,city,state,zipcode]
+    Product:
+      type: object
+      properties: 
+        productId: 
+          type: integer
+        name:
+          type: string
+        price:
+          type : number
+        categoryName : 
+          type : string
+        quantity:
+          type: integer
