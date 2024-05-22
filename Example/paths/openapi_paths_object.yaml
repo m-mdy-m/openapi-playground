@@ -138,3 +138,15 @@ paths:
       responses: 
         "200":
           description: Order Update
+    delete:
+      summary: Delete orders
+      description: Delete Order 
+      parameters: 
+        - name: orderId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses: 
+        "204":
+          description: Order Delete
