@@ -30,6 +30,14 @@ paths:
     get:
       summary: List All product
       description: Return the List Product
+      parameters: 
+        - name : productId
+          in: query
+          schema: 
+            type: integer
+            minimum: 100
+            maximum: 1000
+          example: 101
       responses:
         "200":
           description: OK
