@@ -30,9 +30,17 @@ servers:
             - staging
         version:
           default: v1
+tags: 
+  - name: Product
+    description: Product Operations
+  - name: Order
+    description: Order Api Operations
+
 paths:
   /products:
     get:
+      tags: 
+        - Product
       summary: List All product
       description: Return the List Product
       parameters: 
@@ -43,7 +51,7 @@ paths:
             minimum: 100
             maximum: 1000
           examples:
-            mobile: 
+            mobbile: 
               summary: this example mobile 
               value: 102
             pc:
@@ -78,6 +86,8 @@ paths:
                       name: pc
   /orders: 
     post:
+      tags: 
+        - Order
       summary: Create orders
       description: Post Order Defails to Shop
       requestBody: 
@@ -124,6 +134,8 @@ paths:
                     type : integer
                 
     put:
+      tags: 
+        - Order
       summary: Update orders
       description: Update Order Defails to Shop
       requestBody: 
@@ -164,6 +176,8 @@ paths:
         "200":
           description: Order Update
     delete:
+      tags: 
+        - Order
       summary: Delete orders
       description: Delete Order 
       parameters: 
