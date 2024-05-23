@@ -47,6 +47,8 @@ paths:
   /products:
     get:
       operationId: getProducts
+      security:
+        - BasicAuth: []
       tags: 
         - Product
       summary: List All product
@@ -95,6 +97,7 @@ paths:
   /orders: 
     post:
       operationId: createOrder
+      security: []
       tags: 
         - Order
       summary: Create orders
