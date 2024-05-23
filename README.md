@@ -53,6 +53,7 @@ I'm on a self-paced learning journey, and this repository reflects my progress. 
 - **Example** Practical demonstrations of OpenAPI components like tags, components, paths, and more, in action.
 - **Inheritance:** Explanation of inheritance and polymorphism in openapi
 - **Security:** Explanation of Security in openapi
+
 **Code Generation and API Hosting:**
 
 While this repository focuses on learning, in the future, I might explore:
