@@ -1,0 +1,346 @@
+openapi: 3.0.3
+info:
+  title: My E-commerce Store API
+  version: 0.0.1
+  description: |
+        ## About us
+        **E-commerce** is eaxmple demo with markdown syntax.
+        - example 1
+        > example 2
+        - > example 3 and `example 4`
+  contact:
+    name: API Support
+    email: mahdimamashli1383@gmail.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://{host}.api.com/{vesrion}/{username}
+    description: demo
+    variables:
+        username:
+            default: "mahdi19"
+            enum:
+              - "m__mdy__m"
+        host:
+          default: api  
+          description: The API hostname
+          enum:  
+            - api
+            - staging
+        version:
+          default: v1
+tags: 
+  - name: Product
+    description: Product Operations
+  - name: Order
+    description: Order Api Operations
+security: 
+  - BasicAuth: []
+  - BearerAuth: []
+  - ApiKeyAuth: []
+  - oAuth2AuthCode:
+    - read
+    - write
+    - admin
+paths:
+  /products:
+    get:
+      operationId: getProducts
+      security:
+        - BasicAuth: []
+      tags: 
+        - Product
+      summary: List All product
+      description: Return the List Product
+      parameters: 
+        - name : productId
+          in: query
+          schema: 
+            type: integer
+            minimum: 100
+            maximum: 1000
+          examples:
+            mobbile: 
+              summary: this example mobile 
+              value: 102
+            pc:
+              summary: this example pc
+              value: 103
+      responses:
+        "200":
+          description: OK
+          content : 
+            application/json: 
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    productId: 
+                      type: integer
+                    name:
+                      type: string
+              examples:
+                all-product-data:
+                  summary: Product Data example
+                  value : 
+                    - product: 101
+                      name: mobile
+                    - product: 102
+                      name: laptop
+                single-product:
+                  summary: Single product Example Data
+                  value:
+                    - product : 102
+                      name: pc
+  /orders: 
+    post:
+      operationId: createOrder
+      security: []
+      tags: 
+        - Order
+      summary: Create orders
+      description: Post Order Defails to Shop
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                products:
+                  type: array
+                  items: 
+                    $ref: "#/components/schemas/Product"
+                address:
+                  $ref: "#/components/schemas/Address"
+      responses: 
+        "201":
+          description: Order Created
+          content:
+            application/json: 
+              schema: 
+                type: object
+                properties:
+                  orderId:
+                    type : integer
+          links:
+            GetOrderByOrderId:
+              $ref: '#/components/links/GetOrderByOrderId'
+                
+    put:
+      operationId: UpdateOrder
+      tags: 
+        - Order
+      summary: Update orders
+      description: Update Order Defails to Shop
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                orderId:
+                  type: integer
+                products:
+                  type: array
+                  items: 
+                    $ref: "#/components/schemas/Product"
+                address:
+                  $ref: "#/components/schemas/Address"
+      responses: 
+        "200":
+          description: Order Update
+    delete:
+      operationId: DeleteOrder
+      tags: 
+        - Order
+      summary: Delete orders
+      description: Delete Order 
+      parameters: 
+        - $ref : "#/components/parameters/orderIdQuery"
+      responses: 
+        "204":
+          description: Order Delete
+    get:
+      tags:
+        - Order
+      summary: Get Order Details
+      description: Get Order Details
+      operationId: getOrder
+      parameters: 
+        - $ref: "#/components/parameters/orderIdQuery"
+      responses:
+        "200":
+          description: Fetch Order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: integer
+                  products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+                  address:
+                    $ref: "#/components/schemas/Address"
+
+  /oneOfOrder:
+    post:
+      operationId: demoOneOf
+      tags: 
+        - Order
+      summary: Insert OneOf the Order
+      description: Insert OneOf the Order Details
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                products:
+                  type: object
+                  oneOf: 
+                    - $ref: "#/components/schemas/Mobile"
+                    - $ref: "#/components/schemas/Laptop"
+                address:
+                  $ref: "#/components/schemas/Address"
+              required:
+                - products
+                - address
+      responses: 
+        "200":
+          description: Order placed 
+  /anyOf:
+    get:
+      operationId: demoAnyOf
+      tags:
+        - Order
+      summary: Get Order Details
+      description: Get Order Details
+      parameters: 
+        - $ref: "#/components/parameters/orderIdQuery"
+        - name: fetchType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: 
+              - summary
+              - details
+          description: | 
+              Fetch Type
+              * `summary` - Order Summary
+              * `details` - Order Summary & Order Address
+      responses:
+        '200':
+          description: Return Product Details
+          content:
+            allication/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/OrderSummary'
+                  - $ref: '#/components/schemas/OrderAddress'
+components: 
+  parameters: 
+    orderIdQuery:
+      name: orderId
+      in: query
+      required: true
+      schema:
+        type: integer
+  schemas: 
+    Address:
+      type: object
+      properties:
+        addressLine:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+      required: [addressLine,city,state,zipcode]
+    Product:
+      type: object
+      properties: 
+        productId: 
+          type: integer
+        name:
+          type: string
+        price:
+          type : number
+        categoryName : 
+          type : string
+        quantity:
+          type: integer
+    Mobile:
+      allOf: 
+        - $ref : "#/components/schemas/Product"
+        - type: object
+          properties:
+            networkType:
+              type: string
+              enum: 
+                - 4G
+                - 3G
+          required: [networkType]
+    Laptop:
+      allOf:
+        - $ref: "#/components/schemas/Product"
+        - type: object
+          properties:
+              ram:
+                type: string
+                enum: 
+                  - 4G
+                  - 8G
+                  - 12G
+                  - 16G
+          required: [ram]
+
+    OrderAddress:
+      type: object
+      properties: 
+        address:
+          $ref: "#/components/schemas/Address"
+    OrderSummary:
+      type: object
+      properties:
+        products:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Product"
+  links:
+    GetOrderByOrderId:
+      description: > 
+          The `orderId` value returned in the response can be used as input parameter in `GET /orders`
+      operationId: getProduct
+      parameters:
+        orderId: '$responses.body#/orderId'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+    oAuth2AuthCode:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/api/oauth.access
+          scopes:
+            read: Read only access
+            write: Read Write Access
+            admin: Admin access
+        
