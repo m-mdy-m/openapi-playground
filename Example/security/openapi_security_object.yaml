@@ -38,6 +38,7 @@ tags:
 security: 
   - BasicAuth: []
   - BearerAuth: []
+  - ApiKeyAuth: []
 paths:
   /products:
     get:
@@ -321,3 +322,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
